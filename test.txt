@@ -1,0 +1,14 @@
+	private String createClassFile() throws IOException {
+		InputStream in = getClass()
+				.getResource(getClass().getSimpleName() + ".class")
+				.openStream();
+		File f = File.createTempFile("Example", ".class");
+		FileOutputStream out = new FileOutputStream(f);
+		int b;
+		while ((b = in.read()) != -1) {
+			out.write(b);
+		}
+		in.close();
+		out.close();
+		return f.getPath();
+	}
